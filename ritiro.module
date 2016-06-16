@@ -82,7 +82,12 @@ function seconda_select_list($valore_stazione){
 	$nodes = node_load_multiple($nids);
 	}
 	foreach ($nodes as $node){
-	$output_libro[$data-> tid] = $data -> name;
+	//$output_libro[$data-> tid] = $data -> name;
+		  $titolofield = field_get_items('node',$node, 'field_titolo');
+		  $titolotid = $titolofield[0]['tid'];
+		  $titoloterm = taxonomy_term_load($titolotid);
+		  $titolo = $titoloterm->name;
+		  $output_libro[$titolotid] = $titolo;
 	}//foreach
 
 	return $output_libro;
